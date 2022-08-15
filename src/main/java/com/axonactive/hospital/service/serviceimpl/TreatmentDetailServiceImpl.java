@@ -89,4 +89,9 @@ public class TreatmentDetailServiceImpl implements TreatmentDetailService {
     public List<TreatmentDetailDto> findTreatmentDetailByPhysicianName(String fullName) {
         return treatmentDetailMapper.toDtos(treatmentDetailRepository.findTreatmentDetailByPhysicianName(fullName));
     }
+
+    @Override
+    public List<TreatmentDetailDto> findTreatmentByResult(String result) {
+        return treatmentDetailMapper.toDtos(treatmentDetailRepository.findTreatmentByResult(result));
+    }
 }

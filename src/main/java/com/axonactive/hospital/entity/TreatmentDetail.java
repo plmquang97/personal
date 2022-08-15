@@ -12,6 +12,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class TreatmentDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

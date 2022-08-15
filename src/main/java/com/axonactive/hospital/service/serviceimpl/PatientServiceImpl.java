@@ -6,6 +6,7 @@ import com.axonactive.hospital.repository.PatientRepository;
 import com.axonactive.hospital.repository.TreatmentDetailRepository;
 import com.axonactive.hospital.resource.request.PatientRequest;
 import com.axonactive.hospital.service.PatientService;
+import com.axonactive.hospital.service.dto.PatientAndTreatmentAmountDto;
 import com.axonactive.hospital.service.dto.PatientDto;
 import com.axonactive.hospital.service.mapper.PatientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,10 +76,6 @@ public class PatientServiceImpl implements PatientService {
         return patientMapper.toDtos(patientRepository.findPatientByAgeBetween(fromAge, toAge));
     }
 
-    @Override
-    public List<PatientDto> findPatientByAgeGreaterThan(Integer age) {
-        return patientMapper.toDtos(patientRepository.findPatientByAgeGreaterThan(age));
-    }
 
     @Override
     public List<PatientDto> findPatientByAgeLessThanAndFirstNameContaining(Integer age, String firstName) {
@@ -94,4 +91,16 @@ public class PatientServiceImpl implements PatientService {
     public List<PatientDto> findPatientByDate(LocalDate date) {
         return patientMapper.toDtos(treatmentDetailRepository.findPatientByTreatmentDate(date));
     }
+
+    @Override
+    public List<PatientDto> findPatientByAgeGreaterThan(Integer age) {
+        return patientMapper.toDtos(patientRepository.findPatientByAgeGreaterThan(age));
+    }
+
+    @Override
+    public List<PatientAndTreatmentAmountDto> findTotalOfTreatmentsByPatientId(Integer patientId) {
+        return treatmentDetailRepository.findTotalOfTreatmentsByPatientId(patientId);
+    }
+
+
 }

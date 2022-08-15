@@ -18,13 +18,13 @@ public interface PhysicianService {
 
     PhysicianDto update(Integer physicianId ,PhysicianRequest physicianRequest) throws ResourceNotFoundException;
 
-    List<PhysicianDto> findPhysicianByPhysicianCodeContaining(String physicianCode);
-
-    PhysicianDto findPhysicianByFullName(String fullName);
-
     List<PhysicianDto> findByPatientFirstName(String firstName);
 
+    PhysicianDto findByFullName (String fullName);
+
     PhysicianDto findByFullNameAndCode(String fullName, String physicianCode);
+
+    List<PhysicianDto> findByPhysicianCode (String physicianCode);
 
 
 }

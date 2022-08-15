@@ -50,24 +50,23 @@ public class PhysicianResource {
         return ResponseEntity.ok(physicianService.update(physicianId,physicianRequest));
     }
 
-    @GetMapping("/get-physician-by-physician-code")
-    ResponseEntity<List<PhysicianDto>> findByPhysicianCode (String physicianCode){
-        return ResponseEntity.ok(physicianService.findPhysicianByPhysicianCodeContaining(physicianCode));
-    }
-
-    @GetMapping("/get-physician-by-full-name")
-    ResponseEntity<PhysicianDto> findPhysicianByFullName (String fullName){
-        return ResponseEntity.ok(physicianService.findPhysicianByFullName(fullName));
-    }
-
     @GetMapping("/get-physician-by-patient-first-name")
     ResponseEntity<List<PhysicianDto>> findPhysicianByPatientsFirstName (@RequestParam String firstName){
         return ResponseEntity.ok(physicianService.findByPatientFirstName(firstName));
     }
 
     @GetMapping("/get-physician-by-full-name-and-code")
-    ResponseEntity<PhysicianDto> findPhysicianByFullNameAndCode (String fullName , String physicianCode){
+    ResponseEntity<PhysicianDto> findPhysicianByFullNameAndCode (@RequestParam String fullName , String physicianCode){
         return ResponseEntity.ok(physicianService.findByFullNameAndCode(fullName,physicianCode));
     }
 
+    @GetMapping("/findByFullName")
+    ResponseEntity<PhysicianDto> findPhysicianByFullName (@RequestParam String fullName){
+        return ResponseEntity.ok(physicianService.findByFullName(fullName));
+    }
+
+    @GetMapping("/findByPhysicianCode")
+    ResponseEntity<List<PhysicianDto>> findByPhysicianCode (@RequestParam String physicianCode){
+        return ResponseEntity.ok(physicianService.findByPhysicianCode(physicianCode));
+    }
 }

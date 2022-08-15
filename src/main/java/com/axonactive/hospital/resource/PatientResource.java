@@ -1,10 +1,9 @@
 package com.axonactive.hospital.resource;
 
-import com.axonactive.hospital.entity.Patient;
 import com.axonactive.hospital.exception.ResourceNotFoundException;
 import com.axonactive.hospital.resource.request.PatientRequest;
 import com.axonactive.hospital.service.PatientService;
-import com.axonactive.hospital.service.TreatmentDetailService;
+import com.axonactive.hospital.service.dto.PatientAndTreatmentAmountDto;
 import com.axonactive.hospital.service.dto.PatientDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -66,11 +65,6 @@ public class PatientResource {
         return ResponseEntity.ok(patientService.findPatientByAgeBetween(fromAge ,toAge));
     }
 
-    @GetMapping("/findByAgeGreaterThan")
-    ResponseEntity<List<PatientDto>> findPatientByAgeGreaterThan (@RequestParam Integer age){
-        return ResponseEntity.ok(patientService.findPatientByAgeGreaterThan(age));
-    }
-
     @GetMapping("/findByAgeLessThanAndFirstName")
     ResponseEntity<List<PatientDto>> findPatientByAgeLessThanAndFirstName (@RequestParam Integer age ,String firstName){
         return ResponseEntity.ok(patientService.findPatientByAgeLessThanAndFirstNameContaining(age ,firstName));
@@ -82,8 +76,17 @@ public class PatientResource {
     }
 
     @GetMapping("/findByTreatmentDate")
-    ResponseEntity<List<PatientDto>> findByTreatmentDate(@RequestParam (value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
+    ResponseEntity<List<PatientDto>> findPatientByTreatmentDate(@RequestParam (value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
         return ResponseEntity.ok(patientService.findPatientByDate(date));
     }
 
+    @GetMapping("/findByAgeGreaterThan")
+    ResponseEntity<List<PatientDto>> findPatientByAgeGreaterThan(@RequestParam Integer age){
+        return ResponseEntity.ok(patientService.findPatientByAgeGreaterThan(age));
+    }
+
+    @GetMapping("/{id}/findTotalOfTreatments")
+    ResponseEntity<List<PatientAndTreatmentAmountDto>> countTotalTreatmentsByPatientId(@PathVariable (value = "id")Integer patientId) {
+        return ResponseEntity.ok(patientService.findTotalOfTreatmentsByPatientId(patientId));
+    }
 }

@@ -56,15 +56,6 @@ public class PhysicianServiceImpl implements PhysicianService {
         return physicianMapper.toDto(physicianRepository.save(updatedPhysician));
     }
 
-    @Override
-    public List<PhysicianDto> findPhysicianByPhysicianCodeContaining(String physicianCode) {
-        return physicianMapper.toDtos(physicianRepository.findPhysicianByPhysicianCodeContaining(physicianCode));
-    }
-
-    @Override
-    public PhysicianDto findPhysicianByFullName(String fullName) {
-        return physicianMapper.toDto(physicianRepository.findPhysicianByFullName(fullName));
-    }
 
     @Override
     public List<PhysicianDto> findByPatientFirstName(String firstName) {
@@ -72,8 +63,18 @@ public class PhysicianServiceImpl implements PhysicianService {
     }
 
     @Override
+    public PhysicianDto findByFullName(String fullName) {
+        return physicianMapper.toDto(physicianRepository.findByFullName(fullName));
+    }
+
+    @Override
     public PhysicianDto findByFullNameAndCode(String fullName, String physicianCode) {
         return physicianMapper.toDto(physicianRepository.findByFullNameAndPhysicianCode(fullName ,physicianCode));
+    }
+
+    @Override
+    public List<PhysicianDto> findByPhysicianCode(String physicianCode) {
+        return physicianMapper.toDtos(physicianRepository.findByPhysicianCode(physicianCode));
     }
 
 }

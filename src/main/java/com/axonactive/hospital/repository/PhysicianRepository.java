@@ -9,10 +9,12 @@ import java.util.List;
 
 @Repository
 public interface PhysicianRepository extends JpaRepository<Physician,Integer> {
-    List<Physician> findPhysicianByPhysicianCodeContaining(String physicianCode);
-
-    Physician findPhysicianByFullName(String fullName);
 
     @Query ("FROM Physician ph WHERE ph.fullName = ?1  AND ph.physicianCode = ?2 ")
     Physician findByFullNameAndPhysicianCode(String fullName , String physicianCode);
+
+    Physician findByFullName (String fullName);
+
+    List<Physician> findByPhysicianCode (String physicianCode);
+
 }

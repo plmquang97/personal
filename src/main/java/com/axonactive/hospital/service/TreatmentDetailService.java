@@ -1,5 +1,6 @@
 package com.axonactive.hospital.service;
 
+import com.axonactive.hospital.entity.TreatmentDetail;
 import com.axonactive.hospital.exception.ResourceNotFoundException;
 import com.axonactive.hospital.resource.request.TreatmentDetailRequest;
 import com.axonactive.hospital.service.dto.TreatmentDetailDto;
@@ -20,4 +21,6 @@ public interface TreatmentDetailService {
     List<TreatmentDetailDto> findByPatientFirstName(String firstName);
 
     List<TreatmentDetailDto> findTreatmentDetailByPhysicianName (String fullName);
+
+    List<TreatmentDetailDto> findTreatmentByResult (String result);
 }

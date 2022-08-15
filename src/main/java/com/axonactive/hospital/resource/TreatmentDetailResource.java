@@ -56,4 +56,9 @@ public class TreatmentDetailResource {
     ResponseEntity<List<TreatmentDetailDto>> findByPhysicianName(@RequestParam String fullName){
         return ResponseEntity.ok(treatmentDetailService.findTreatmentDetailByPhysicianName(fullName));
     }
+
+    @GetMapping("/FindByResult")
+    ResponseEntity<List<TreatmentDetailDto>> findTreatmentsByResult(@RequestParam String result){
+        return ResponseEntity.ok(treatmentDetailService.findTreatmentByResult(result));
+    }
 }

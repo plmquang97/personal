@@ -3,6 +3,7 @@ package com.axonactive.hospital.service;
 import com.axonactive.hospital.entity.Patient;
 import com.axonactive.hospital.exception.ResourceNotFoundException;
 import com.axonactive.hospital.resource.request.PatientRequest;
+import com.axonactive.hospital.service.dto.PatientAndTreatmentAmountDto;
 import com.axonactive.hospital.service.dto.PatientDto;
 
 import java.time.LocalDate;
@@ -25,11 +26,13 @@ public interface PatientService {
 
     List<PatientDto> findPatientByAgeBetween(Integer fromAge ,Integer toAge);
 
-    List<PatientDto> findPatientByAgeGreaterThan(Integer age);
-
     List<PatientDto> findPatientByAgeLessThanAndFirstNameContaining(Integer age , String firstName);
 
     List<PatientDto> findPatientsByPhysicianId ( Integer physicianId);
 
     List<PatientDto> findPatientByDate (LocalDate date);
+
+    List<PatientDto> findPatientByAgeGreaterThan(Integer age);
+
+    List<PatientAndTreatmentAmountDto> findTotalOfTreatmentsByPatientId (Integer patientId);
 }

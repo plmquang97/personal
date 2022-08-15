@@ -8,8 +8,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PatientAndTreatmentDto {
+public class PatientAndTreatmentAmountDto {
 
-    private Integer patientId;
+
+    private String firstName;
+
+    private String lastName;
+
+    private Long treatmentsAmount;
 }
 
